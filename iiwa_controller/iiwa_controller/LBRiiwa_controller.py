@@ -12,8 +12,8 @@ from controller import Motor, PositionSensor
 from iiwa_interfaces.srv import ChangeTrajectory
 
 
-class LBRController():
-	def __init__(self, webots_node, properties):
+class LBRController:
+	def init(self, webots_node, properties):
 		
 		robot_name = properties["robotName"]  # Параметр получаемы с URDF файла
 		self.__THRESHOLD = float(properties["threshold"])  # Коэфициент проверки достижения конечной точки
