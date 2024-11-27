@@ -1,3 +1,4 @@
+import array
 import rclpy
 import numpy as np
 
@@ -88,7 +89,7 @@ class LBRController():
 			self.__reached_curent_point = True
 			self.__points = points
 			
-			response.position = points[-1].positions
+			response.position = array.array('f', points[-1].positions)
 			response.joint_names = self.__joint_names
 
 			response.status = True
@@ -160,7 +161,7 @@ class LBRController():
 			distance = np.linalg.norm(current_sensor_positions - target_positions)
 
 			if distance < self.__THRESHOLD:
-				# TODO: Здесь должен быть код передачи координат реальному роботу 
+				# TODO: Здесь должен быть код передачи координат реальному роботу по ROS
 
 				self.__reached_curent_point = True
 				self.__curent_point_index += 1
