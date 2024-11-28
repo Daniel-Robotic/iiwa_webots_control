@@ -25,7 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'LBRiiwa_controller = iiwa_controller.LBRiiwa_controller:main',
-			'positionPublisher = iiwa_controller.positionPublisher:main'
+			'positionPublisher = iiwa_controller.positionPublisher:main',
+			"fri_controller = iiwa_controller.LBRiiwa_controller_real:main",
         ],
     },
 )

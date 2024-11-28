@@ -22,6 +22,11 @@ def generate_launch_description():
         ],
         respawn=True
     )
+
+    fri_driver = Node(
+        package='iiwa_controller',
+        executable='fri_controller'
+    )
     
     position_publisher = Node(
 		package='iiwa_controller',
@@ -31,6 +36,7 @@ def generate_launch_description():
     return LaunchDescription([
         webots,
         lbr_driver,
+        fri_driver,
         position_publisher,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
