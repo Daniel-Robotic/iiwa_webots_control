@@ -11,7 +11,7 @@ find_package(ament_cmake_pytest REQUIRED)
 
 # install
 install(
-  DIRECTORY gazebo meshes ros2_control urdf
+  DIRECTORY gazebo rviz2 meshes ros2_control urdf
   DESTINATION share/${PROJECT_NAME}
 )
 

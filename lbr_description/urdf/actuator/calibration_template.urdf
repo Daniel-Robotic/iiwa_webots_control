@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<robot name="calibration template">
+	
+	<link name="link_base">
+		<visual>
+			<origin xyz="0.0 0 0.0168" rpy="0 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/base_actuator.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0 0.0168" rpy="0 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/base_actuator.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_frame">
+		<visual>
+			<origin xyz="0.0 0 0.014" rpy="0 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/calibration/visible/frame.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0 0.014" rpy="0 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/calibration/collision/frame.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_railL">
+		<visual name="">
+			<origin xyz="0.0 0 0.01" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.6 0.02 0.02"/>
+			</geometry>
+			<material name="">
+				<color rgba="0.67 0.7 0.75 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0 0.01" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.6 0.02 0.02"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_railR">
+		<visual name="">
+			<origin xyz="0.0 0 0.01" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.6 0.02 0.02"/>
+			</geometry>
+			<material name="">
+				<color rgba="0.67 0.7 0.75 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0 0.01" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.6 0.02 0.02"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_calibration">
+		<visual name="">
+			<origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.86 0.61 0.01"/>
+			</geometry>
+			<material name="">
+				<color rgba="0.905 0.921 0.725 1.0"/>
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0 0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.86 0.61 0.01"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="joint_base_frame" type="fixed">
+		<parent link="link_base"/>
+		<child link="link_frame"/>
+		<origin xyz="0.0 0.0 0.0168" rpy="0.0 0.0 0.0"/>
+	</joint>
+
+	<joint name="joint_frame_railL" type="fixed">
+		<parent link="link_frame"/>
+		<child link="link_railL"/>
+		<origin xyz="0.0 -0.046 0.007" rpy="0.0 0.0 0.0"/>
+	</joint>
+
+	<joint name="joint_frame_railR" type="fixed">
+		<parent link="link_frame"/>
+		<child link="link_railR"/>
+		<origin xyz="0.0 0.046 0.007" rpy="0.0 0.0 0.0"/>
+	</joint>
+
+	<joint name="joint_rail_calibration" type="fixed">
+		<parent link="link_railL"/>
+		<child link="link_calibration"/>
+		<origin xyz="0.0 0.046 0.025" rpy="0.0 0.0 0.0"/>
+	</joint>
+	
+	
+
+</robot>

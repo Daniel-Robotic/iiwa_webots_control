@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<robot name="camera_actuator">
+
+	<link name="link_base">
+		<visual>
+			<origin xyz="0.0 0.0168 0" rpy="1.57 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/base_actuator.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0168 0" rpy="1.57 3.14 0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/base_actuator.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_main">
+		<visual>
+			<origin xyz="0.002 0 0.0195" rpy="0.0 0.0 0.0"/>
+			<geometry>
+			
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/visible/main.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.002 0 0.0195" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/collision/main.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_camera_frame">
+		<visual>
+			<origin xyz="0 -0.0445 -0.016" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/visible/camera_frame.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 -0.0445 -0.016" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/collision/camera_frame.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_finger_right">
+		<visual>
+			<origin xyz="0.021 0 -0.02" rpy="0.0 0.0 1.57"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/visible/finger.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0.021 0 -0.02" rpy="0.0 0.0 1.57"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/collision/finger.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="link_finger_left">
+		<visual>
+			<origin xyz="-0.021 0 0.02" rpy="3.14 0 1.57"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/visible/finger.dae" scale="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="-0.021 0 0.02" rpy="3.14 0 1.57"/>
+			<geometry>
+				<mesh filename="package://lbr_description/meshes/actuator/camera_actuator/collision/finger.stl" scale="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+	
+	<joint name="joint_base_main" type="fixed">
+		<parent link="link_base"/>
+		<child link="link_main"/>
+		<origin xyz="0 0.039 0.0" rpy="0.0 0.0 0.0"/>
+	</joint>
+
+	<joint name="joint_main_camera_frame" type="revolute">
+		<parent link="link_main"/>
+		<child link="link_camera_frame"/>
+		<axis xyz="1 0 0"/>
+		<limit lower="0" upper="1.57" velocity="50.0" effort="1000.0"/>
+		<origin xyz="0 0.0445 0.0365" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="joint_main_fingerR" type="prismatic">
+		<parent link="link_main"/>
+		<child link="link_finger_right"/>
+		<axis xyz="1 0 0"/>
+		<limit lower="-0.01" upper="0" velocity="0.5" effort="1000.0"/>
+		<origin xyz="-0.02 0.106 0" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="joint_main_fingerL" type="prismatic">
+		<parent link="link_main"/>
+		<child link="link_finger_left"/>
+		<axis xyz="1 0 0"/>
+		<limit lower="0" upper="0.01" velocity="0.5" effort="1000.0"/>
+		<mimic joint="joint_main_fingerR" multiplier="-1"/>
+		<origin xyz="0.02 0.106 0" rpy="0 0 0"/>
+	</joint>
+	
+	
+	
+
+</robot>
